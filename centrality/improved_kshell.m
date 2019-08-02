@@ -1,12 +1,15 @@
 function [Ci] = improved_kshell(A)
 
 %IMPROVED_KSHELL
+%          calls/requires: kshell.m
 %          Improved version of k-shell decomposition metric.
 %          Ci = improved_kshell(A), where A is an adjacency matrix,
 %          computes k-shell index for each node by using k-shell decomposition,
 %          further ranks nodes that have the same k-shell index to distinguish
 %          This metric returns the ranking point of each node by giving
-%          extra points based upon rank on top of K-shell index
+%          extra points based upon rank on top of k-shell index.
+%          In addition, the second column of output indicates k-shell index for each
+%          node.
 
 %          Author: Beom Woo Kang
 %          Date: Jul 29, 2019
@@ -63,6 +66,4 @@ for i = 1:length(K)
     end
 end
 
-%normalize result
-cmax = max(Ci);
-Ci = Ci./cmax;
+Ci = [Ci Ck];

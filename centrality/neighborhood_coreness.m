@@ -1,6 +1,7 @@
 function [Cnc2] = neighborhood_coreness(A)
 
 %NEIGHBORHOOD_CORENESS
+%          %calls/requires: kshell.m
 %          Neighborhood coreness centrality metric.
 %          Cnc2 = neighborhood_coreness(A), where A is an adjacency matrix,
 %          computes the extended neighborhood coreness for each node

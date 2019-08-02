@@ -1,6 +1,7 @@
 function Ck = kshell(A)
 
 %KSHELL    K-shell decomposition metric.
+%          used in: improved_kshell.m, neighborhood_coreness.m
 %          Ck = kshell(A), where A is an adjacency matrix,
 %          computes k-shell index for each node by using k-shell decomposition
 

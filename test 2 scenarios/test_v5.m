@@ -1,6 +1,6 @@
 clear; clc; clf;
 
-scale = 300;
+scale = 100;
 
 k_size = scale;
 n = scale;  %inital size of network
@@ -16,8 +16,9 @@ x_k = 1:k_size;   %x-axis plotting index
 y_si = zeros(1,k_size);  %y-axis plotting index 1 (for initial calculation)
 y_sr = zeros(1,k_size);  %y-axis plotting index 2 (for recalculation)
 
-Dc = local(A.Adj);
+% Dc = local(A.Adj);
 %Dc = centrality(G, 'degree');
+Dc = entropy(A.Adj, 1);
 D = [Dc linspace(1,n,n)'];
 Dr = D;       %static array for recalculation
 Dsorted = sortrows(D, 1, 'descend');  %sort by degree in descending order
@@ -53,7 +54,8 @@ for k = 1:k_size  %number of node removal
     %Gr = graph(Ar, 'upper');
     %Dc = centrality(Gr, 'degree');       %proceed one latest recalculation
     if stop == 0
-        Dc = local(Ar);
+%         Dc = local(Ar);
+        Dc = entropy(Ar, 1);
         %check if every centraliy value is 0
         if Dc == zeros(n,1)
             stop = 1;

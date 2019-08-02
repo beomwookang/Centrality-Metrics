@@ -1,6 +1,7 @@
 function [Ch] = hybrid_degree(A, a, b, p)
 
 %HYBRID_DEGREE
+%          calls/requires: local.m
 %          Hybrid degree centraliy metric
 %          Ch = hybrid_degree(A), where A is an adjacency matrix, p is
 %          spreading probability, a is normalizing factor, b is adjusting ratio,
@@ -19,8 +20,19 @@ function [Ch] = hybrid_degree(A, a, b, p)
 n = length(A);
 Ch = zeros(n,1);
 
-%compute modified local centrality (MLC)
+%compute degree
+G = graph(A);
+Cd = centrality(G, 'degree');
+
+%compute modified local centrality (MLC) and hybrid degree
+Cm = zeros(n,1);
 Cl = local(A);      %original local centrality
 for v = 1:n
+    sum = 0;
     Nv = find(A(v,:));
+    for u = 1:length(Nv)
+        sum = sum + length(find(A(Nv(u),:)));   %sum of neighbors' degree
+    end
+    Cm(v) = Cl(v) - 2*sum;
+    Ch(v) = (b-p)*a*Cd(v) + p*Cm(v);
 end

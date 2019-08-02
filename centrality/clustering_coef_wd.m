@@ -1,6 +1,7 @@
 function C=clustering_coef_wd(W)
 %CLUSTERING_COEF_WD     Clustering coefficient
 %
+%   used in: clusterrank.m
 %   C = clustering_coef_wd(W);
 %
 %   The weighted clustering coefficient is the average "intensity" of 

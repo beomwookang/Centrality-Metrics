@@ -1,6 +1,7 @@
 function Cl = local(A)
 
 %LOCAL     Local centraliy metric
+%          used in: hybrid_degree.m
 %          Cl = local(A), where A is an adjacency matrix,
 %          computes local centrality for each node in A
 

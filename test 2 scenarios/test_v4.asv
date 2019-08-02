@@ -1,11 +1,11 @@
 clear; clc; clf;
 
-scale = 20;
+scale = 300;
 
 k_size = scale;
 n = scale;  %inital size of network
 
-A = er2(n, 0.1); %generate random graph
+A = er2(n, 0.02); %generate random graph
 G = graph(A.Adj, 'upper');
 subplot(1,2,1);
 plot(G);         %initial graph
@@ -16,8 +16,10 @@ x_k = 1:k_size;   %x-axis plotting index
 y_si = zeros(1,k_size);  %y-axis plotting index 1 (for initial calculation)
 y_sr = zeros(1,k_size);  %y-axis plotting index 2 (for recalculation)
 
-Dc = local(A.Adj);
+Dc = clusterra(A.Adj);
 %Dc = centrality(G, 'degree');
+% Dc = hybrid_degree(A.Adj, 100, 0.2, 0.1);
+%Dc = collective_influence(A.Adj,4);
 D = [Dc linspace(1,n,n)'];
 Dr = D;       %static array for recalculation
 Dsorted = sortrows(D, 1, 'descend');  %sort by degree in descending order
@@ -49,7 +51,9 @@ for k = 1:k_size  %number of node removal
     
 %     Gr = graph(Ar, 'upper');
 %     Dc = centrality(Gr, 'degree');       %proceed one latest recalculation
-    Dc = local(Ar);
+    Dc = clusterrank(Ar);
+%     Dc = hybrid_degree(Ar, 100, 0.2, 0.1);
+%     Dc = collective_influence(Ar,4);
     Dr = [Dc linspace(1,n,n)'];
     [mv,mi] = max(Dr(:,1));     %find the index of the top node
     r_id(ri+1) = mi;            %save the newest index in the history
