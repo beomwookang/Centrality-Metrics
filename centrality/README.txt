@@ -1,6 +1,6 @@
 degree.m : 			Degree Centrality (1)
-hybrid_degree.m : 			Hybrid Degree Centrality (2)
-brandes_betweenness.m : 		Faster Betweenness Centrality (4)
+hybrid_degree.m : 		Hybrid Degree Centrality (2)
+brandes_betweenness.m : 	Faster Betweenness Centrality (4)
 subgraph.m : 			Subgraph Centrality (19)
 communicability.m : 		Communicability (20)
 clustering_coef_wd.m : 		Local Clustering Coefficient (22)
